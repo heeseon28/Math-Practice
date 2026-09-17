@@ -17,6 +17,10 @@ def main():
     solutions = []
 
     # TODO: find the solutions of the equation x^2 - 100x + 1600 = 0
+    for x in range(-100, 100):
+        if x ** 2 - 100 * x + 1600 == 0:
+            solutions.append(x)
+
 
     logging.info("Solutions: {}".format(solutions))
 

@@ -9,7 +9,11 @@ def load_elements(fname):
     return lst
 
 def remove_duplicates(lst):
-    raise NotImplementedError
+    ret = []
+    for i in lst:
+        if i not in ret:
+            ret.append(i)
+    return ret
 
 def command_line_args():
     parser = argparse.ArgumentParser()

@@ -5,37 +5,79 @@ import copy
 # TODO: the function returns True if the first argument is the subset of the second argument
 # list * list -> bool
 def is_subset(a, b):
-    raise NotImplementedError
+    tmp = True
+    for i in a:
+        if i not in b:
+            tmp = False
+            break
+    return tmp
+
+def is_proper_subset(a, b):
+    tmp1 = is_subset(a, b)
+    tmp2 = False
+    for i in b:
+        if i in a:
+            tmp = True
+    return tmp1 and tmp2
 
 # TODO: the function returns the cardinality of a given set
 # list -> int
 def get_cardinality(a):
-    raise NotImplementedError
+    return len(a)
 
 # TODO: the function returns the power set of a given set
 # list -> list of list
 def generate_power_set(a):
-    raise NotImplementedError
+    if len(a) == 1:
+        return [[], a]
+    else:
+        e = a[-1]
+        b = a[:-1]
+        n_1 = generate_power_set(b)
+        n = []
+        for s in n_1:
+            n.append(s + [e])
+        return n_1 + n
+
 
 # TODO: the function returns the cartesian product of two given sets
 # list * list -> list of pairs
 def generate_cartesian_product(a, b):
-    raise NotImplementedError
+    ret = []
+    for x in a:
+        for y in b:
+            ret.append(x, y)
+    return ret
 
 # TODO: the function returns the union of two sets
 # list * list -> list
 def union(a, b):
-    raise NotImplementedError
+    ret = []
+    for x in a:
+        ret.append(x)
+    for y in a:
+        if y not in ret:
+            ret.append(y)
+    return ret
 
 # TODO: the function returns the intersection of two sets
 # list * list -> list
 def intersection(a, b):
-    raise NotImplementedError
+    ret = []
+    for x in a:
+        if x in b:
+            ret.append(x)
+    return ret
 
 # TODO: the function returns A - B
 # list * list -> list
 def difference(a, b):
-    raise NotImplementedError
+    ret = []
+    for x in a:
+        if x not in b:
+            ret.append(x)
+    return ret
+
 
 def command_line_args():
     parser = argparse.ArgumentParser()

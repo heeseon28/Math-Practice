@@ -54,13 +54,36 @@ def print_truth_table(expression):
         print ("")
 
 def count_satisfying(expression):
-    raise NotImplemented
+    ret = 0
+    table = truth_table(expression)
+    for r in table:
+        if r[-1] == True:
+            ret += 1
+    return ret
 
 def is_tautology(expression):
-    raise NotImplemented
+    table = truth_table(expression)
+    ret = True
+    for r in table:
+        if r[-1] == False:
+            ret = False
+            break
+    return ret
 
 def are_equivalent(exp1, exp2):
-    raise NotImplemented
+    table1 = truth_table(exp1)
+    table2 = truth_table(exp2)
+    ret = True
+
+    if len(table1) != len(table2):
+        ret = False
+    else:
+        for i in range(len(table1)):
+            if table1[i][-1] != table2[i][-1]:
+                ret = False
+                break
+    return ret
+
 
 def command_line_args():
     parser = argparse.ArgumentParser()

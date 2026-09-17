@@ -7,23 +7,54 @@ from operators import *
 
 # TODO: the function checks if a predicate p is true for all elements in U
 def is_true_for_all(p, u):
-    raise NotImplementedError
+    ret = True
+    for i in u:
+        exec("x = {}".format(i))
+        r = eval(p)
+        if r == False:
+            ret = False
+            break
+    return ret
+
 
 # TODO: the function checks if a predicate p is true for some elements in U
 def exists_for_some(p, u):
-    raise NotImplementedError
+    ret = False
+    for i in u:
+        exec("x = {}".format(i))
+        r = eval(p)
+        if r == True:
+            ret = True
+            break
+    return ret
 
 # TODO: the function checks if a predicate p is true for all elements of all domains
 def is_valid(p, ulst):
-    raise NotImplementedError
+    ret = True
+    for i in ulst:
+        if is_true_for_all(p, i) == False:
+            ret = False
+            break
+    return ret
 
 # TODO: the function checks if a predicate p is true for some elements of some domains
 def is_satisfiable(p, ulst):
-    raise NotImplementedError
+    ret = False
+    for i in ulst:
+        if exists_for_some(p, i) == True:
+            ret = True
+            break
+    return ret
 
 # TODO: the function checks if two predicates are logically equivalent
 def are_equivalent(p1, p2, ulst):
-    raise NotImplementedError
+    ret = True
+    for u in ulst:
+        p12 = ("|{} iff {}|".format(p1, p2))
+        if not is_true_for_all(p12, u):
+            ret = False
+            breka
+    return ret
 
 def command_line_args():
     parser = argparse.ArgumentParser()
